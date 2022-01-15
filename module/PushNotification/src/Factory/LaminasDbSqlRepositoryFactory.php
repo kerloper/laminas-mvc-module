@@ -15,7 +15,7 @@ class LaminasDbSqlRepositoryFactory implements FactoryInterface
         return new LaminasDbSqlRepository(
             $container->get(AdapterInterface::class),
             new ReflectionHydrator(),
-            new PushNotification('', '')
+            new PushNotification('', '','')
         );
     }
 }

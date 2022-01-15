@@ -13,6 +13,10 @@ class PushNotification
      * @var string
      */
     private $url;
+    /**
+     * @var string
+     */
+    private $title;
 
     /**
      * @var string
@@ -22,12 +26,14 @@ class PushNotification
     /**
      * @param string $url
      * @param string $key
+     * @param string $title
      * @param int|null $id
      */
-    public function __construct($url, $key, $id = null)
+    public function __construct($url, $key,$title, $id = null)
     {
         $this->url = $url;
         $this->key = $key;
+        $this->title = $title;
         $this->id = $id;
     }
 
@@ -53,5 +59,13 @@ class PushNotification
     public function getKey()
     {
         return $this->key;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
