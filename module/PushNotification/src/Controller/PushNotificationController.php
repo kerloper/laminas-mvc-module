@@ -1,7 +1,7 @@
 <?php
 namespace PushNotification\Controller;
 
-use PushNotification\Model\PushNotificationRepositoryInterface;
+use PushNotification\Model\PushNotification\PushNotificationRepositoryInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 

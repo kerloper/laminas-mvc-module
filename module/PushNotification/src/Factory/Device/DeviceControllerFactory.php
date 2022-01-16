@@ -1,8 +1,8 @@
 <?php
-namespace PushNotification\Factory;
+namespace PushNotification\Factory\Device;
 
 use PushNotification\Controller\DeviceController;
-use PushNotification\Model\DeviceRepositoryInterface;
+use PushNotification\Model\Device\DeviceRepositoryInterface;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 

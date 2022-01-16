@@ -1,5 +1,5 @@
 <?php
-namespace PushNotification\Model;
+namespace PushNotification\Model\PushNotification;
 
 interface PushNotificationCommandInterface
 {

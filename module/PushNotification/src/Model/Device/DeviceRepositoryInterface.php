@@ -1,6 +1,6 @@
 <?php
 
-namespace PushNotification\Model;
+namespace PushNotification\Model\Device;
 
 interface DeviceRepositoryInterface
 {

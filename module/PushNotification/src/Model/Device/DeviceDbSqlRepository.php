@@ -1,6 +1,6 @@
 <?php
 
-namespace PushNotification\Model;
+namespace PushNotification\Model\Device;
 
 use InvalidArgumentException;
 use RuntimeException;
@@ -11,7 +11,7 @@ use Laminas\Db\Adapter\Driver\ResultInterface;
 use Laminas\Db\ResultSet\HydratingResultSet;
 use Laminas\Db\Sql\Sql;
 
-class PushNotificationDbSqlRepository implements PushNotificationRepositoryInterface
+class DeviceDbSqlRepository implements DeviceRepositoryInterface
 {
     /**
      * @var AdapterInterface
@@ -24,32 +24,28 @@ class PushNotificationDbSqlRepository implements PushNotificationRepositoryInter
     private $hydrator;
 
     /**
-     * @var PushNotification
+     * @var Device
      */
-    private $pushNotificationPrototype;
+    private $devicePrototype;
 
     public function __construct(
         AdapterInterface  $db,
         HydratorInterface $hydrator,
-        PushNotification  $pushNotificationPrototype
+        Device  $devicePrototype
     )
     {
         $this->db = $db;
         $this->hydrator = $hydrator;
-        $this->pushNotificationPrototype = $pushNotificationPrototype;
+        $this->devicePrototype = $devicePrototype;
     }
 
-    /**
-     * Return a set of all blog pushNotification that we can iterate over.
-     *
-     * Each entry should be a PushNotification instance.
-     *
-     * @return PushNotification[]
-     */
-    public function findAllPushNotifications()
+
+
+    public function findAllDevices()
     {
+        // TODO: Implement findAllDevices() method.
         $sql = new Sql($this->db);
-        $select = $sql->select('pushnotification');
+        $select = $sql->select('devices');
         $statement = $sql->prepareStatementForSqlObject($select);
         $result = $statement->execute();
 
@@ -57,21 +53,16 @@ class PushNotificationDbSqlRepository implements PushNotificationRepositoryInter
             return [];
         }
 
-        $resultSet = new HydratingResultSet($this->hydrator, $this->pushNotificationPrototype);
+        $resultSet = new HydratingResultSet($this->hydrator, $this->devicePrototype);
         $resultSet->initialize($result);
         return $resultSet;
     }
 
-    /**
-     * Return a single blog pushNotification.
-     *
-     * @param int $id Identifier of the pushNotification to return.
-     * @return PushNotification
-     */
-    public function findPushNotification($id)
+    public function findDevice($id)
     {
+        // TODO: Implement findDevice() method.
         $sql = new Sql($this->db);
-        $select = $sql->select('pushNotification');
+        $select = $sql->select('devices');
         $select->where(['id = ?' => $id]);
 
         $statement = $sql->prepareStatementForSqlObject($select);
@@ -84,16 +75,16 @@ class PushNotificationDbSqlRepository implements PushNotificationRepositoryInter
             ));
         }
 
-        $resultSet = new HydratingResultSet($this->hydrator, $this->pushNotificationPrototype);
+        $resultSet = new HydratingResultSet($this->hydrator, $this->devicePrototype);
         $resultSet->initialize($result);
-        $pushNotification = $resultSet->current();
+        $device = $resultSet->current();
 
-        if (!$pushNotification) {
+        if (!$device) {
             throw new InvalidArgumentException(sprintf(
                 'Blog pushNotification with identifier "%s" not found.',
                 $id
             ));
         }
-        return $pushNotification;
+        return $device;
     }
 }

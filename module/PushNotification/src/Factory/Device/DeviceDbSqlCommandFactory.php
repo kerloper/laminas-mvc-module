@@ -1,21 +1,22 @@
 <?php
-namespace PushNotification\Factory;
+namespace PushNotification\Factory\Device;
 
+use PushNotification\Model\Device\Device;
+use PushNotification\Model\PushNotification\PushNotificationDbSqlCommand;
 use Interop\Container\ContainerInterface;
-use PushNotification\Model\PushNotification;
-use PushNotification\Model\PushNotificationDbSqlRepository;
+use PushNotification\Model\PushNotification\PushNotification;
 use Laminas\Db\Adapter\AdapterInterface;
 use Laminas\Hydrator\ReflectionHydrator;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
-class PushNotificationDbSqlRepositoryFactory implements FactoryInterface
+class DeviceDbSqlCommandFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new PushNotificationDbSqlRepository(
+        return new LaminasDbSqlCommand(
             $container->get(AdapterInterface::class),
             new ReflectionHydrator(),
-            new PushNotification('', '','')
+            new Device('', '','','','')
         );
     }
 }
