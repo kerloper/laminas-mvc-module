@@ -11,7 +11,7 @@ use Laminas\Db\Adapter\Driver\ResultInterface;
 use Laminas\Db\ResultSet\HydratingResultSet;
 use Laminas\Db\Sql\Sql;
 
-class LaminasDbSqlRepository implements PushNotificationRepositoryInterface
+class PushNotificationDbSqlRepository implements PushNotificationRepositoryInterface
 {
     /**
      * @var AdapterInterface

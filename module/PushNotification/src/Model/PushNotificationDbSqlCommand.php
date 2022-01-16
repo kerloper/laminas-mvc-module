@@ -9,7 +9,7 @@ use Laminas\Db\Sql\Insert;
 use Laminas\Db\Sql\Sql;
 use Laminas\Db\Sql\Update;
 
-class LaminasDbSqlCommand implements PushNotificationCommandInterface
+class PushNotificationDbSqlCommand implements PushNotificationCommandInterface
 {
     /**
      * @var AdapterInterface

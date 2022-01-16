@@ -9,14 +9,13 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
 return [
     'service_manager' => [
         'aliases' => [
-            Model\PushNotificationRepositoryInterface::class => Model\LaminasDbSqlRepository::class,
-            Model\PushNotificationCommandInterface::class => Model\LaminasDbSqlCommand::class,
+            Model\PushNotificationRepositoryInterface::class => Model\PushNotificationDbSqlRepository::class,
+            Model\PushNotificationCommandInterface::class => Model\PushNotificationDbSqlCommand::class,
+            Model\DeviceRepositoryInterface::class => Model\PushNotificationDbSqlRepository::class,
         ],
         'factories' => [
-            Model\PushNotificationRepository::class => InvokableFactory::class,
-            Model\LaminasDbSqlRepository::class => Factory\LaminasDbSqlRepositoryFactory::class,
-            Model\PushNotificationCommand::class => InvokableFactory::class,
-            Model\LaminasDbSqlCommand::class => Factory\LaminasDbSqlCommandFactory::class,
+            Model\PushNotificationDbSqlRepository::class => Factory\PushNotificationDbSqlRepositoryFactory::class,
+            Model\PushNotificationDbSqlCommand::class => Factory\PushNotificationDbSqlCommandFactory::class,
         ],
     ],
     'router' => [
@@ -80,6 +79,20 @@ return [
                             ],
                         ],
                     ],
+
+                    'device' => [
+                        'type' => Literal::class,
+                        'options' => [
+                            'route' => '/device',
+                            'defaults' => [
+                                'controller' => Controller\DeviceController::class,
+                                'action' => 'index',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                    ],
+
+
                 ],
 
             ],
@@ -88,6 +101,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\PushNotificationController::class => Factory\PushNotificationControllerFactory::class,
+            Controller\DeviceController::class => Factory\DeviceControllerFactory::class,
 
         ],
     ],
