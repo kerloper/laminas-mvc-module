@@ -31,6 +31,56 @@ return [
                     ],
                 ],
                 'may_terminate' => true,
+                'child_routes' => [
+                    'detail' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/:id',
+                            'defaults' => [
+                                'action' => 'detail',
+                            ],
+                            'constraints' => [
+                                'id' => '\d+',
+                            ],
+                        ],
+                    ],
+                    'add' => [
+                        'type' => Literal::class,
+                        'options' => [
+                            'route' => '/add',
+//                            'defaults' => [
+//                                'controller' => Controller\WriteController::class,
+//                                'action' => 'add',
+//                            ],
+                        ],
+                    ],
+                    'edit' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/edit/:id',
+//                            'defaults' => [
+//                                'controller' => Controller\WriteController::class,
+//                                'action' => 'edit',
+//                            ],
+                            'constraints' => [
+                                'id' => '[1-9]\d*',
+                            ],
+                        ],
+                    ],
+                    'delete' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/delete/:id',
+//                            'defaults' => [
+//                                'controller' => Controller\DeleteController::class,
+//                                'action'     => 'delete',
+//                            ],
+                            'constraints' => [
+                                'id' => '[1-9]\d*',
+                            ],
+                        ],
+                    ],
+                ],
 
             ],
         ],
