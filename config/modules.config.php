@@ -17,5 +17,5 @@ return [
     'Laminas\Db',
     'Application',
     'Blog',
-    'PushNotification',
+    'Notification',
 ];
